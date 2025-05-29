@@ -1,6 +1,6 @@
 import { createConfig, http, createStorage, cookieStorage } from "wagmi";
 import { mainnet, sepolia } from "wagmi/chains";
-import { coinbaseWallet, injected, walletConnect } from "wagmi/connectors";
+import { injected, walletConnect } from "wagmi/connectors";
 
 declare module "wagmi" {
   interface Register {
