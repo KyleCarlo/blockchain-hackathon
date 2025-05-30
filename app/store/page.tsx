@@ -1,16 +1,20 @@
 "use client";
 
-import "../globals.css";
+export default function Page() {
+  const products = Array.from({ length: 9 }).map((_, i) => ({
+    id: i,
+    name: `Product Name ${i}`,
+    price: 998,
+    image: `https://picsum.photos/seed/${i}/300/200`,
+  }));
 
-
-const StorePageMockup = () => {     
+  
   return (
     <div className="min-h-screen bg-base-101 text-base-content">
       {/* Store Banner */}
-      <div className="relative bg-gradient-to-r from-primary to-secondary h-49">
-        <div className="absolute left-7 bottom-[-2rem] flex items-center gap-4">
-          <div className="w-25 h-24 bg-white rounded-full border-4 border-base-100"></div>
-          <div className="text-white text-3xl font-bold">Store Name</div>
+      <div className="w-full px-6 mt-4">
+        <div className="bg-gradient-to-r from-cyan-500 to-teal-500 text-white text-center text-lg font-semibold py-4 rounded-lg shadow-md">
+          🎉 Big Sale! Enjoy up to 50% OFF on selected items! 🎉
         </div>
       </div>
 
@@ -43,14 +47,24 @@ const StorePageMockup = () => {
         </div>
       </div>
 
-      {/* Product Grid */}
-      <div className="mt-7 px-6 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {Array.from({ length: 9 }).map((_, i) => (
-          <div key={i} className="bg-base-201 p-2 rounded space-y-2">
-            <div className="h-33 bg-gray-300 rounded">Image</div>
-            <div className="text-sm font-bold">Product Name {i + 0}</div>
-            <div className="text-sm text-primary">₱998</div>
-          </div>
+      {/* Store Product Grid */}
+      <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 px-6">
+        {products.map(product => (
+          <a
+            key={product.id}
+            href="/product/"
+            className="block bg-white border border-gray-200 rounded p-2 hover:shadow-md transition"
+          >
+            <img
+              src={product.image}
+              alt={product.name}
+              className="w-full h-40 object-cover rounded mb-2"
+            />
+            <div className="p-2">
+              <div className="font-bold text-sm">{product.name}</div>
+              <div className="text-primary font-semibold">₱{product.price}</div>
+            </div>
+          </a>
         ))}
       </div>
 
@@ -61,5 +75,3 @@ const StorePageMockup = () => {
     </div>
   );
 }
-
-export default StorePageMockup;
